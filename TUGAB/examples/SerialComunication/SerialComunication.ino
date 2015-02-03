@@ -26,9 +26,9 @@ void setup()
   pinMode(DISPLAY_DIGIT2, OUTPUT);
   
   // LEDs
-  pinMode(LED_GREEN, OUTPUT);
+  pinMode(LED_GREEN,  OUTPUT);
   pinMode(LED_YELLOW, OUTPUT);
-  pinMode(LED_RED, OUTPUT);
+  pinMode(LED_RED,    OUTPUT);
   
   // Buzzer
   pinMode(AUDIO_OUT_BUZZER, OUTPUT);
@@ -206,17 +206,15 @@ boolean ValidateCommand(String command)
   {
     if(strstr(command.c_str(), "LED")) //Comparing word entered with word stored in program
     {
-      // If is valid.
-      state = true;
-    }
-    if(command[4] == '0' || command[4] == '1' || command[4] == '2')
-    {
-      if(command[5] == '0' || command[5] == '1')
+      if(command[4] == '1' || command[4] == '2' || command[4] == '3')
       {
-        // If is valid.
-        state = true;
+        if(command[5] == '0' || command[5] == '1')
+        {
+          // If is valid.
+          state = true;
+        }
       }
-    }        
+    } 
   }
   
   // Turn the buzzer OFF.
@@ -313,56 +311,56 @@ void ParseCommand(String command)
       int displayValue = command.substring(8, 10).toInt();
       SetIndicator(displayValue);
     }
-  
+  }
+
   // LED command
-    if(strstr(command.c_str(), "LED")) //Comparing word entered with word stored in program
+  if(strstr(command.c_str(), "LED")) //Comparing word entered with word stored in program
+  {
+    if(command[4] == '1')
     {
-      if(command[4] == '1')
+      if(command[5] == '0')
       {
-        if(command[5] == '0')
-        {
-          digitalWrite(LED_GREEN, LOW);          
-        }
-        if(command[5] == '1')
-        {
-          digitalWrite(LED_GREEN, HIGH);
-        }        
+        digitalWrite(LED_GREEN, LOW);
       }
-      if(command[4] == '2')
+      if(command[5] == '1')
       {
-        if(command[5] == '0')
-        {
-          digitalWrite(LED_YELLOW, LOW);          
-        }
-        if(command[5] == '1')
-        {
-          digitalWrite(LED_YELLOW, HIGH);
-        }        
-      }
-      if(command[4] == '3')
-      {
-        if(command[5] == '0')
-        {
-          digitalWrite(LED_RED, LOW);
-        }
-        if(command[5] == '1')
-        {
-          digitalWrite(LED_RED, HIGH);
-        }        
+        digitalWrite(LED_GREEN, HIGH);
       }
     }
+    if(command[4] == '2')
+    {
+      if(command[5] == '0')
+      {
+        digitalWrite(LED_YELLOW, LOW);
+      }
+      if(command[5] == '1')
+      {
+        digitalWrite(LED_YELLOW, HIGH);
+      }
+    }
+    if(command[4] == '3')
+    {
+      if(command[5] == '0')
+      {
+        digitalWrite(LED_RED, LOW);
+      }
+      if(command[5] == '1')
+      {
+        digitalWrite(LED_RED, HIGH);
+      }
+    } 
+  }
   
-    // Turn the buzzer OFF.
-    if(command == "?BUZZER0\n")
-    {
-      Serial.println("Buzzer 0");
-    }
+  // Turn the buzzer OFF.
+  if(command == "?BUZZER0\n")
+  {
+    Serial.println("#BUZ:0");
+  }
   
-    // Turn the buzzer ON.
-    if(command == "?BUZZER1\n")
-    {
-      Serial.println("Buzzer 1");
-    }
+  // Turn the buzzer ON.
+  if(command == "?BUZZER1\n")
+  {
+    Serial.println("#BUZ:1");
   }
   
   // Microphone sensor command
