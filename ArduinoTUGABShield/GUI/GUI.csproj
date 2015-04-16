@@ -79,6 +79,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DeviceNetVarna\DeviceNetVarna.csproj">
+      <Project>{107c37e2-84d9-4d8c-b417-6708827b272a}</Project>
+      <Name>DeviceNetVarna</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TUGABShield\TUGABShield.csproj">
       <Project>{e305248a-9bef-47bd-ab79-71df479a2d45}</Project>
       <Name>TUGABShield</Name>

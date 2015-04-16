@@ -10,6 +10,7 @@ using System.IO.Ports;
 using System.Threading;
 
 using TUGABShield;
+using DeviceNetVarna;
 
 namespace GUI
 {
@@ -34,6 +35,23 @@ namespace GUI
         private char[] delimiterChars = { ' ', ',', '.', ':', '\t' };
 
         private string devicePortName = "";
+
+        /// <summary>
+        /// E-mails user.
+        /// </summary>
+        private string userName = "orlin369@gmail.com";//Registered user name on devicewebvarna.azurewebsites.net
+
+        /// <summary>
+        /// Sensor ID.
+        /// </summary>
+        private string sensorIdentifier = "DC89C26F-2ECE-4E74-9879-D729974B2E18";//Your device identifier
+
+        /// <summary>
+        /// Sensor secret.
+        /// </summary>
+        private string sensorSecret = "18E835D2-9E1B-493A-AEDE-D172D5689D41";//Your device secret
+
+        DeviceNetVarna.Client sensorService;
 
         #endregion
 
@@ -65,6 +83,10 @@ namespace GUI
             this.poolingTimer.Stop();
             this.poolingTimer.Interval = 5000;
             this.poolingTimer.Tick += poolingTimer_Tick;
+
+            // Service
+            this.sensorService = new Client(this.userName, this.sensorIdentifier, this.sensorSecret);
+
         }
 
         /// <summary>
@@ -199,6 +221,9 @@ namespace GUI
                                 this.lblTemp.Text = String.Format("Temp: {0}", tokens[1]);
                             });
                         }
+
+                        double value = double.Parse(tokens[1]);
+                        sensorService.Send(value);
                     }
 
                     else if (inData.Contains("MIC"))
