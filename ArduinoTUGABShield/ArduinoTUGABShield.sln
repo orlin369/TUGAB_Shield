@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TUGABShield", "TUGABShield\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{2D4B731F-916E-414C-91E8-F32453B33A48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceNetVarna", "DeviceNetVarna\DeviceNetVarna.csproj", "{107C37E2-84D9-4D8C-B417-6708827B272A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceWebVarna", "DeviceWebVarna\DeviceWebVarna.csproj", "{107C37E2-84D9-4D8C-B417-6708827B272A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

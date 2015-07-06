@@ -10,7 +10,7 @@ using System.IO.Ports;
 using System.Threading;
 
 using TUGABShield;
-using DeviceNetVarna;
+using DeviceWebVarna;
 
 namespace GUI
 {
@@ -51,7 +51,7 @@ namespace GUI
         /// </summary>
         private string sensorSecret = "18E835D2-9E1B-493A-AEDE-D172D5689D41";//Your device secret
 
-        DeviceNetVarna.Client sensorService;
+        DeviceWebVarna.Client sensorService;
 
         #endregion
 
@@ -222,6 +222,7 @@ namespace GUI
                             });
                         }
 
+                        // Send to the cloud.
                         double value = double.Parse(tokens[1]);
                         sensorService.Send(value);
                     }
